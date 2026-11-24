@@ -1,10 +1,18 @@
 {
   "version": 2,
-  "outputDirectory": "web",
-  "rewrites": [
+  "builds": [
     {
-      "source": "/api/:path*",
-      "destination": "/api/index.py"
+      "src": "server.py",
+      "use": "@vercel/python",
+      "config": {
+        "includeFiles": ["web/**", "modules/**"]
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "server.py"
     }
   ]
 }
